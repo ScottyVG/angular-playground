@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html ng-app="firstApp">
+
+<head>
+  <meta charset="utf-8">
+  <title>{{ greeting }} World</title>
+  <link rel="stylesheet" href="main.css" media="screen">
+</head>
+
+<body ng-init="names=['Harry', 'Ron', 'Hermione', 'Sirius', 'Hedwig', 'Tonks']">
+  <p>{{1 + 6}}</p>
+  <p>Say something to the world <input type="text" ng-model="greeting" ng-init="greeting='Hello, '"></p>
+  <br>
+  <input type="text" placeholder="What is your name?" ng-model="name">
+  <h1>My name is: {{name}}</h1>
+
+  <p>
+    1 + 2 = {{1+2}} <br> My name is {{"BoJack"+"Horseman"}} <br> The array [99,43,22] is {{ [99,43,22].length }} items long
+  </p>
+  <p>
+    {{3.14159265359 | currency}}
+  </p>
+  <p>Say something <input type="text" ng-model="something"></p>
+  <p>
+    <strong>{{ something | uppercase}}</strong>
+    <br>
+    <i>{{ something | lowercase}}</i>
+  </p>
+  <p>
+    {{3.14159265359 | number:3}} <br>{{3.14159265359 | number:6}}<br> {{3.14159265359 | number:1}}
+  </p>
+  <p>
+    How many digits of pi do you want?
+    <select name="digits of pi" ng-model="pi">
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <option value="5">5</option>
+  <option value="6">6</option>
+  <option value="7">7</option>
+  <option value="8">8</option>
+  <option value="9">9</option>
+</select> Here you go! The first {{pi}} digits of pi!
+    <br> {{3.141592653589793238462643383279 | number:pi}}
+  </p>
+
+  <h1>Just the Tip Calculator</h1>
+  <p>
+    How much did your meal cost? <input type="number" ng-model="cost">
+    <br> How much do you want to tip? <br>
+    <select name="digits of pi" ng-model="tip">
+  <option value="10">10</option>
+  <option value="11">11</option>
+  <option value="12">12</option>
+  <option value="13">13</option>
+  <option value="14">14</option>
+  <option value="15">15</option>
+  <option value="16">16</option>
+  <option value="17">17</option>
+  <option value="18">18</option>
+  <option value="19">19</option>
+  <option value="20">20</option>
+  <option value="21">21</option>
+  <option value="22">22</option>
+  <option value="23">23</option>
+  <option value="24">24</option>
+  <option value="25">25</option>
+  <option value="26">26</option>
+  <option value="27">27</option>
+  <option value="28">28</option>
+  <option value="29">29</option>
+  <option value="30">30</option>
+  <option value="50">50</option>
+</select>
+  </p>
+  <h2>Subtotal: {{ cost | currency }}</h2>
+  <h2>Tip: {{cost * (tip/100) | currency}}</h2>
+
+  <div>
+    {{this}}
+  </div>
+  <h1>MAD LIBS</h1>
+  <h2>Please fill out the following</h2>
+  <hr>
+  <p>
+    <strong>Boy's Name</strong><br>
+    <input type="text" placeholder="Enter a boy's name ..." ng-model="boysname"><br>
+    <strong>Adjective</strong><br>
+    <input type="text" placeholder="Enter an adjective ..." ng-model="adjective"><br>
+    <strong>Plural Noun</strong><br>
+    <input type="text" placeholder="Enter a plural noun ..." ng-model="pluralnoun1"><br>
+    <strong>Plural Noun</strong><br>
+    <input type="text" placeholder="Enter a plural noun ..." ng-model="pluralnoun2"><br>
+    <strong>An insect, plural</strong><br>
+    <input type="text" placeholder="Enter an insect, plural ..." ng-model="insectplural"><br>
+    <strong>Plural Noun</strong><br>
+    <input type="text" placeholder="Enter a plural noun ..." ng-model="pluralnoun3"><br>
+    <strong>A verb ending in "s"</strong><br>
+    <input type="text" placeholder="Enter a verb ending in s ..." ng-model="sverb">
+  </p>
+
+  <h1>Mad with the Libs</h1>
+  <hr>
+  <h2>Im in love with
+    {{ boysname }}. He's so
+    {{ adjective }}! He has big flat
+    {{ pluralnoun1 }}, and when our
+    {{ pluralnoun2 }} meet, I get
+    {{ insectplural }} in my stomach. I've fallen for him like a ton of
+    {{ pluralnoun3 }}, and he
+    {{ sverb }} me, too. But I think he's got another girlfriend. What should I do?</h2>
+
+  <ul>
+    <li ng-repeat='name in names'>
+      {{name}}
+    </li>
+  </ul>
+
+  <div ng-init="suites=['&spades;', '&clubs;', '&hearts;', '&diams;']">
+    <ul>
+      <li ng-repeat='suite in suites'>
+        {{suite}}
+      </li>
+    </ul>
+
+  </div>
+
+  <div ng-init="arrNumbers=[1,1,2,5,6,9,9,9]">
+    <ul>
+      <li ng-repeat='arrNumber in arrNumbers track by $index'>
+        {{arrNumber}}
+      </li>
+    </ul>
+
+  </div>
+
+  <div ng-init="car={type:'Fiat', model:'500', color:'white'};">
+    <ul>
+      <li ng-repeat='(key, value) in car'>
+        {{key}} &middot; {{value}}
+      </li>
+    </ul>
+  </div>
+
+  <div ng-show='3 + 4 == 5'>
+    3 + 4 isn't 5, don't show
+  </div>
+
+  <div ng-show='3 + 4 == 7'>
+    3 + 4 is 7, do show
+  </div>
+
+  <div ng-hide='3 + 4 == 5'>
+    3 + 4 isn't 5, don't hide
+  </div>
+
+  <div ng-hide='3 + 4 == 7'>
+    3 + 4 is 7, do hide
+  </div>
+
+  <h1>Sign up page</h1>
+  <p ng-class='{red: pw.length<8, green: pw.length>7}'>
+    <input type="password" placeholder="Enter password ..." ng-model="pw" ng-class='{red: pw.length<8, green: pw.length>7}'><br> Your password is {{ pw.length }} characters <br>
+    <input type="button" value="submit" ng-hide="pw.length <8">
+    <p ng-show="pw.length <8">
+      password invalid!!!
+    </p><br>
+  </p>
+
+
+  <div ng-class='{highlight: 4 + 4 == 8}'> 4 + 4 = 8</div>
+  <div ng-class='{highlight: 4 + 4 == 10}'>4 + 4 = 10</div>
+
+  <div ng-controller="MyFirstController">
+  <h1>My name is: {{name}}</h1>
+  <input ng-model="name" type="text" placeholder="What is your name">
+</div>
+
+  <div ng-controller="ExercisesController">
+    <h3>{{ FavColor }}</h3>
+    <h3>{{ secondsInACentury }}</h3>
+    <h3>{{ rightMeow }}</h3>
+  </div>
+
+
+
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.js"></script>
+  <script type="text/javascript" src="app.js">
+
+  </script>
+</body>
+
+</html>
