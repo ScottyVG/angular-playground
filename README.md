@@ -13,3 +13,6 @@ A directory that holds all practice examples from the articles and markdown file
 ### helloAngular
 
 An intro html document to play around with basic angular features
+
+### Todo
+- Add all questions into 1 markdown file

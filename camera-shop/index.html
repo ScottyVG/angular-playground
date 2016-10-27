@@ -59,6 +59,19 @@
   </li>
 </ul>
 
+<!-- CART -->
+<div>
+  <h3>
+    <ul>
+      <li ng-repeat="item in currentItems track by $index">
+        {{item.name}}, {{item.price / 100 | currency}}
+      </li>
+    </ul>
+  </h3>
+  <h5>Total Cost:</h5>
+  <span>{{totalCost / 100 | currency}}</span>
+</div>
+
 <script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.js'></script>
 <script type='text/javascript' src='app.js'></script>
 </body>
