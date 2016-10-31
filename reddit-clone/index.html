@@ -17,11 +17,11 @@
     <script src="app.js"></script>
   </head>
   <body ng-controller="ribbetController">
-    <div class="navbar-fixed grey lighten-4">
-      <nav class="grey lighten-4">
+    <div class="navbar-fixed blue darken-4">
+      <nav class="blue darken-4">
           <div class="nav-wrapper container row">
-            <h4 class="col s6 m4 l3"><img class="logo" src="images/ribbitlogo.png">Ribbit</h4>
-            <button ng-click="view.showForm = true" class="col s2 m2 l1 btn light-blue lighten-4 grey-text topnav">Add Post</button>
+            <h4 class="col s6 m4 l3">Ribbet</h4>
+            <button ng-click="view.showForm = true" class="col s2 m2 l1 btn light-blue lighten-4 grey-text topnav">Post</button>
             <input ng-model="view.search" type="text" name="search" placeholder="Search" class="col s2 white grey-text topnav" />
             <select ng-model="view.selected" name="sort" class="browser-default col s2 white grey-text">
               <option value="votes" selected>Sort by Votes</option>
@@ -29,13 +29,6 @@
               <option value="title">Sort by Title</option>
             </select>
           </div>
-
-          <!-- MOBILE NAVIGATION BAR -->
-          <ul id="nav-mobile" class="side-nav orange darken-1">
-            <li><a href="index.html" class="orange darken-1">Home</a></li>
-            <li><a href="orders.html" class="orange darken-1">Order Delivery</a></li>
-          </ul>
-          <a href="#" data-activates="nav-mobile" class="button-collapse orange-text text-darken-1"><i class="material-icons">menu</i></a>
         </div>
       </nav>
     </div>
@@ -58,27 +51,28 @@
           <input ng-model="view.form.description" ng-class="{invalid: postForm.description.$invalid && view.formSubmitted}" type="text" name="description" placeholder="description" class="col s9" required>
           <div ng-show="postForm.description.$invalid && view.formSubmitted" class="col s2 red-text">Required</div>
         </div>
-        <button type="submit" name="button" class="btn light-blue lighten-4">Submit</button>
+        <button type="submit" name="button" class="btn blue darken-3">Submit</button>
       </form>
       <div ng-repeat="blog in view.blogs | filter:view.search | orderBy:view.selected:true">
         <br>
-        <h5>{{blog.title}} |
+        <h5>
           <i ng-click="downVote(blog.votes)" class="material-icons">keyboard_arrow_down</i>
           <i ng-click="upVote(blog.votes)" class="material-icons">keyboard_arrow_up</i>
           <span ng-class="{neg: blog.votes < 0, pos: blog.votes > 0}">
             {{blog.votes}}
           </span>
+          | {{blog.title}}
         </h5>
         <h6 class="blue-text">"{{blog.author}}"  <time class="tooltipped grey-text" data-position="bottom" data-delay="0" data-tooltip="{{blog.date | amDateFormat:'dddd, MMMM Do YYYY, h:mm a'}}">{{blog.date | amCalendar}}</time></h6>
         <img ng-src="{{blog.image}}" />
         <p>{{blog.description}}</p>
         <div class="row">
-          <button ng-pluralize count="blog.comments.length" when="{'0': 'No Comments', '1': '1 Comment', 'other': '{} comments'}" ng-click="blog.showComments = !blog.showComments" type="button" name="button" class="btn col s3 blue-grey"></button>
+          <button ng-pluralize count="blog.comments.length" when="{'0': 'No Comments', '1': '1 Comment', 'other': '{} comments'}" ng-click="blog.showComments = !blog.showComments" type="button" name="button" class="btn col s2 blue darken-4"></button>
           <i ng-click="blog.addComment = true" class="material-icons left">add</i>
           <form ng-show="blog.addComment === true" ng-submit="newComment()" name="commentForm" class="col s8" novalidate>
             <input ng-model="blog.comment.author" ng-class="{invalid: commentForm.author.$invalid && this.blog.commentSubmitted}" type="text" name="author" placeholder="author" class="col s3" required>
             <input ng-model="blog.comment.body" ng-class="{invalid: commentForm.body.$invalid && this.blog.commentSubmitted}" type="text" name="body" placeholder="body" class="col s7" required>
-            <button type="submit" name="button" class="btn light-blue lighten-4"><i class="material-icons grey-text">send</i></button>
+            <button type="submit" name="button" class="btn blue darken-4"><i class="material-icons">send</i></button>
           </form>
           <div class="row">
             <div class="col s2 offset-s4"><span ng-show="blog.addComment === true && this.blog.commentSubmitted && commentForm.author.$invalid" class="red-text">Required</span></div>

@@ -48,7 +48,7 @@ app.controller(`ribbetController`, [`$scope`, function($scope) {
     title: `shit post`,
     votes: -1,
   }, {
-    author: `Topic to be inserted`,
+    author: `Billy Murray`,
     comments: [],
     date: `2016-10-13T23:59:48.001Z`,
     description: `Small batch roof party quinoa enamel pin fanny pack.Next level roof party truffaut pork belly celiac listicle.Quinoa yr raw denim,
