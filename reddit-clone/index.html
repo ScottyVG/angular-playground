@@ -1,136 +1,134 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="ribbetApp">
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-  <title>Ribbet</title>
+<html ng-app="ribbetApp">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.2/moment.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-moment/1.0.0/angular-moment.js"></script>
+    <script src="app.js"></script>
+  </head>
+  <body ng-controller="RedditController">
+    <div class="navbar-fixed grey lighten-4">
+      <nav class="grey lighten-4">
+          <div class="nav-wrapper container row">
+            <h4 class="col s6 m4 l3"><img class="logo" src="images/ribbitlogo.png">Ribbit</h4>
+            <button ng-click="vm.showForm = true" class="col s2 m2 l1 btn light-blue lighten-4 grey-text topnav">Add Post</button>
+            <input ng-model="vm.search" type="text" name="search" placeholder="Search" class="col s2 white grey-text topnav" />
+            <select ng-model="vm.selected" name="sort" class="browser-default col s2 white grey-text">
+              <option value="votes" selected>Sort by Votes</option>
+              <option value="date">Sort by Date</option>
+              <option value="title">Sort by Title</option>
+            </select>
+          </div>
 
-  <!-- CSS  -->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-
-</head>
-
-<!-- Main Body -->
-<body ng-controller='controller'>
-  <!-- NAVIGATION BAR -->
-<div class="navbar-fixed light-blue lighten-4">
-  <nav class="light-blue lighten-4">
-    <div class="nav-wrapper container">
-      <a id="logo-container" href="index.html" class="brand-logo orange-text text-darken-1"><img class="ribbet" src="images/ribbitlogo.png"></a>
-      <ul id="MyDropDown" class="dropdown-content">
-  <li><a href="#!">one</a></li>
-  <li><a href="#!">two</a></li>
-  <li class="divider"></li>
-  <li><a href="#!">three</a></li>
-</ul>
-
-      <!-- MOBILE NAVIGATION BAR -->
-      <ul id="nav-mobile" class="side-nav orange darken-1">
-        <li><a href="index.html" class="orange darken-1">Home</a></li>
-        <li><a href="orders.html" class="orange darken-1">Order Delivery</a></li>
-      </ul>
-      <a href="#" data-activates="nav-mobile" class="button-collapse orange-text text-darken-1"><i class="material-icons">menu</i></a>
+          <!-- MOBILE NAVIGATION BAR -->
+          <ul id="nav-mobile" class="side-nav orange darken-1">
+            <li><a href="index.html" class="orange darken-1">Home</a></li>
+            <li><a href="orders.html" class="orange darken-1">Order Delivery</a></li>
+          </ul>
+          <a href="#" data-activates="nav-mobile" class="button-collapse orange-text text-darken-1"><i class="material-icons">menu</i></a>
+        </div>
+      </nav>
     </div>
-  </nav>
-</div>
 
-  <!-- The "Stuff" -->
-  <p>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-  </p>
-
-  <!-- Footer -->
-  <footer class="page-footer blue-grey darken-4">
-    <div class="container">
-      <div class="row">
-        <div class="col l6 s12">
-          <h5 class="white-text">Ribbet Bio</h5>
-          <p class="grey-text text-lighten-4">We are a team of frogs working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
+    <main class="container">
+      <form ng-show="vm.showForm === true" ng-submit="newPost()" name="postForm" novalidate>
+        <div class="row">
+          <input ng-model="vm.form.title" ng-class="{invalid: postForm.title.$invalid && vm.formSubmitted}" type="text" name="title" placeholder="title" class="col s9" required>
+          <div ng-show="postForm.title.$invalid && vm.formSubmitted" class="col s2 red-text">Required</div>
+        </div>
+        <div class="row">
+          <input ng-model="vm.form.author" ng-class="{invalid: postForm.author.$invalid && vm.formSubmitted}" type="text" name="author" placeholder="author" class="col s9" required>
+          <div ng-show="postForm.author.$invalid && vm.formSubmitted" class="col s2 red-text">Required</div>
+        </div>
+        <div class="row">
+          <input ng-model="vm.form.image" ng-class="{invalid: postForm.image.$invalid && vm.formSubmitted}" type="text" name="image" placeholder="image url" class="col s9" required>
+          <div ng-show="postForm.image.$invalid && vm.formSubmitted" class="col s2 red-text">Required</div>
+        </div>
+        <div class="row">
+          <input ng-model="vm.form.description" ng-class="{invalid: postForm.description.$invalid && vm.formSubmitted}" type="text" name="description" placeholder="description" class="col s9" required>
+          <div ng-show="postForm.description.$invalid && vm.formSubmitted" class="col s2 red-text">Required</div>
+        </div>
+        <button type="submit" name="button" class="btn light-blue lighten-4">Submit</button>
+      </form>
+      <div ng-repeat="blog in vm.blogs | filter:vm.search | orderBy:vm.selected:true">
+        <br>
+        <h5>{{blog.title}} |
+          <i ng-click="downVote(blog.votes)" class="material-icons">keyboard_arrow_down</i>
+          <span ng-class="{neg: blog.votes < 0, pos: blog.votes > 0}">
+            {{blog.votes}}
+          </span>
+          <i ng-click="upVote(blog.votes)" class="material-icons">keyboard_arrow_up</i>
+        </h5>
+        <h6 class="blue-text">"{{blog.author}}"  <time class="tooltipped grey-text" data-position="bottom" data-delay="0" data-tooltip="{{blog.date | amDateFormat:'dddd, MMMM Do YYYY, h:mm a'}}">{{blog.date | amCalendar}}</time></h6>
+        <img ng-src="{{blog.image}}" />
+        <p>{{blog.description}}</p>
+        <div class="row">
+          <button ng-pluralize count="blog.comments.length" when="{'0': 'No Comments', '1': '1 Comment', 'other': '{} comments'}" ng-click="blog.showComments = !blog.showComments" type="button" name="button" class="btn col s3 blue-grey"></button>
+          <i ng-click="blog.addComment = true" class="material-icons left">add</i>
+          <form ng-show="blog.addComment === true" ng-submit="newComment()" name="commentForm" class="col s8" novalidate>
+            <input ng-model="blog.comment.author" ng-class="{invalid: commentForm.author.$invalid && this.blog.commentSubmitted}" type="text" name="author" placeholder="author" class="col s3" required>
+            <input ng-model="blog.comment.body" ng-class="{invalid: commentForm.body.$invalid && this.blog.commentSubmitted}" type="text" name="body" placeholder="body" class="col s7" required>
+            <button type="submit" name="button" class="btn light-blue lighten-4"><i class="material-icons grey-text">send</i></button>
+          </form>
+          <div class="row">
+            <div class="col s2 offset-s4"><span ng-show="blog.addComment === true && this.blog.commentSubmitted && commentForm.author.$invalid" class="red-text">Required</span></div>
+            <div class="col s2"><span ng-show="blog.addComment === true && this.blog.commentSubmitted && commentForm.body.$invalid" class="red-text">Required</span></div>
+          </div>
+        </div>
+        <div ng-show="blog.showComments === true" ng-repeat="comment in blog.comments" class="row">
+          <div class="col s2 offset-s1 right-align"><strong>{{comment.author}}: </strong></div><div class="col s8 left-align">{{comment.body}}</div>
         </div>
       </div>
-    </div>
-<div class="blue-grey darken-3">
-  <div class="container">
-    <div class="row">
-      <div class="col l3 s12">
-        <h5 class="white-text">Settings</h5>
-        <ul>
-          <li><a class="white-text" href="#!">Link 1</a></li>
-          <li><a class="white-text" href="#!">Link 2</a></li>
-          <li><a class="white-text" href="#!">Link 3</a></li>
-          <li><a class="white-text" href="#!">Link 4</a></li>
-        </ul>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="page-footer blue-grey darken-4">
+      <div class="container">
+        <div class="row">
+          <div class="col l6 s12">
+            <h5 class="white-text">Ribbet Bio</h5>
+            <p class="grey-text text-lighten-4">We are a team of frogs working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-  <div class="blue-grey darken-2">
+  <div class="blue-grey darken-3">
     <div class="container">
       <div class="row">
         <div class="col l3 s12">
-          <h5 class="white-text">Connect</h5>
+          <h5 class="white-text">Froggy Stuff</h5>
           <ul>
-            <li><a class="white-text" href="#!">Link 1</a></li>
-            <li><a class="white-text" href="#!">Link 2</a></li>
-            <li><a class="white-text" href="#!">Link 3</a></li>
-            <li><a class="white-text" href="#!">Link 4</a></li>
+            <li><a class="white-text" href="https://twitter.com/KermitTheFrog?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor">Big Kerm</a></li>
           </ul>
         </div>
       </div>
     </div>
-  </div>
-</div>
-    <div class="footer-copyright">
+    <div class="blue-grey darken-2">
       <div class="container">
-      Made by <a class="orange-text text-lighten-3" href="http://scottvangilder.com">Scott Van Gilder</a>
+        <div class="row">
+          <div class="col l3 s12">
+            <h5 class="white-text">Connect</h5>
+            <ul>
+              <li><a class="white-text" href="http://pruebakr-1.webcindario.com/nope.jpg">Nope</a></li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
-  </footer>
-
-
-  <!--  Scripts-->
-  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="js/materialize.js"></script>
-  <script src="js/init.js"></script>
+  </div>
+      <div class="footer-copyright">
+        <div class="container">
+        Made by <a class="orange-text text-lighten-3" href="http://scottvangilder.com">Scott Van Gilder</a>
+        </div>
+      </div>
+    </footer>
 
   </body>
 </html>
