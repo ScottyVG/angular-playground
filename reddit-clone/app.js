@@ -2,16 +2,17 @@
 /* eslint-disable max-len */
 'use strict';
 
+
 const app = angular.module(`ribbetApp`, [`angularMoment`]);
 
-app.controller(`RedditController`, [`$scope`, function($scope) {
-  $scope.vm = {};
-  $scope.vm.form = {};
-  $scope.vm.showForm = false;
-  $scope.vm.formSubmitted = false;
-  $scope.vm.search = ``;
-  $scope.vm.selected = `votes`;
-  $scope.vm.blogs = [{
+app.controller(`ribbetController`, [`$scope`, function($scope) {
+  $scope.view = {};
+  $scope.view.form = {};
+  $scope.view.showForm = false;
+  $scope.view.formSubmitted = false;
+  $scope.view.search = ``;
+  $scope.view.selected = `votes`;
+  $scope.view.blogs = [{
     author: `Taco Man`,
     comments: [{
       author: `Mr. Kitty`,
@@ -62,22 +63,22 @@ app.controller(`RedditController`, [`$scope`, function($scope) {
   }, ];
 
   $scope.newPost = function() {
-    $scope.vm.formSubmitted = true;
+    $scope.view.formSubmitted = true;
     if ($scope.postForm.$valid) {
       const post = {
-        author: $scope.vm.form.author,
+        author: $scope.view.form.author,
         comments: [],
         date: new Date(),
-        description: $scope.vm.form.description,
-        image: $scope.vm.form.image,
-        title: $scope.vm.form.title,
+        description: $scope.view.form.description,
+        image: $scope.view.form.image,
+        title: $scope.view.form.title,
         votes: 0,
       };
-      $scope.vm.blogs.push(post);
-      $scope.vm.showForm = false;
-      $scope.vm.form = {};
+      $scope.view.blogs.push(post);
+      $scope.view.showForm = false;
+      $scope.view.form = {};
       $scope.postForm.$setPristine();
-      $scope.vm.formSubmitted = false;
+      $scope.view.formSubmitted = false;
     }
   };
 

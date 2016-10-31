@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html ng-app="ribbetApp">
+
+<!-- test -->
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,14 +16,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-moment/1.0.0/angular-moment.js"></script>
     <script src="app.js"></script>
   </head>
-  <body ng-controller="RedditController">
+  <body ng-controller="ribbetController">
     <div class="navbar-fixed grey lighten-4">
       <nav class="grey lighten-4">
           <div class="nav-wrapper container row">
             <h4 class="col s6 m4 l3"><img class="logo" src="images/ribbitlogo.png">Ribbit</h4>
-            <button ng-click="vm.showForm = true" class="col s2 m2 l1 btn light-blue lighten-4 grey-text topnav">Add Post</button>
-            <input ng-model="vm.search" type="text" name="search" placeholder="Search" class="col s2 white grey-text topnav" />
-            <select ng-model="vm.selected" name="sort" class="browser-default col s2 white grey-text">
+            <button ng-click="view.showForm = true" class="col s2 m2 l1 btn light-blue lighten-4 grey-text topnav">Add Post</button>
+            <input ng-model="view.search" type="text" name="search" placeholder="Search" class="col s2 white grey-text topnav" />
+            <select ng-model="view.selected" name="sort" class="browser-default col s2 white grey-text">
               <option value="votes" selected>Sort by Votes</option>
               <option value="date">Sort by Date</option>
               <option value="title">Sort by Title</option>
@@ -39,33 +41,33 @@
     </div>
 
     <main class="container">
-      <form ng-show="vm.showForm === true" ng-submit="newPost()" name="postForm" novalidate>
+      <form ng-show="view.showForm === true" ng-submit="newPost()" name="postForm" novalidate>
         <div class="row">
-          <input ng-model="vm.form.title" ng-class="{invalid: postForm.title.$invalid && vm.formSubmitted}" type="text" name="title" placeholder="title" class="col s9" required>
-          <div ng-show="postForm.title.$invalid && vm.formSubmitted" class="col s2 red-text">Required</div>
+          <input ng-model="view.form.title" ng-class="{invalid: postForm.title.$invalid && view.formSubmitted}" type="text" name="title" placeholder="title" class="col s9" required>
+          <div ng-show="postForm.title.$invalid && view.formSubmitted" class="col s2 red-text">Required</div>
         </div>
         <div class="row">
-          <input ng-model="vm.form.author" ng-class="{invalid: postForm.author.$invalid && vm.formSubmitted}" type="text" name="author" placeholder="author" class="col s9" required>
-          <div ng-show="postForm.author.$invalid && vm.formSubmitted" class="col s2 red-text">Required</div>
+          <input ng-model="view.form.author" ng-class="{invalid: postForm.author.$invalid && view.formSubmitted}" type="text" name="author" placeholder="author" class="col s9" required>
+          <div ng-show="postForm.author.$invalid && view.formSubmitted" class="col s2 red-text">Required</div>
         </div>
         <div class="row">
-          <input ng-model="vm.form.image" ng-class="{invalid: postForm.image.$invalid && vm.formSubmitted}" type="text" name="image" placeholder="image url" class="col s9" required>
-          <div ng-show="postForm.image.$invalid && vm.formSubmitted" class="col s2 red-text">Required</div>
+          <input ng-model="view.form.image" ng-class="{invalid: postForm.image.$invalid && view.formSubmitted}" type="text" name="image" placeholder="image url" class="col s9" required>
+          <div ng-show="postForm.image.$invalid && view.formSubmitted" class="col s2 red-text">Required</div>
         </div>
         <div class="row">
-          <input ng-model="vm.form.description" ng-class="{invalid: postForm.description.$invalid && vm.formSubmitted}" type="text" name="description" placeholder="description" class="col s9" required>
-          <div ng-show="postForm.description.$invalid && vm.formSubmitted" class="col s2 red-text">Required</div>
+          <input ng-model="view.form.description" ng-class="{invalid: postForm.description.$invalid && view.formSubmitted}" type="text" name="description" placeholder="description" class="col s9" required>
+          <div ng-show="postForm.description.$invalid && view.formSubmitted" class="col s2 red-text">Required</div>
         </div>
         <button type="submit" name="button" class="btn light-blue lighten-4">Submit</button>
       </form>
-      <div ng-repeat="blog in vm.blogs | filter:vm.search | orderBy:vm.selected:true">
+      <div ng-repeat="blog in view.blogs | filter:view.search | orderBy:view.selected:true">
         <br>
         <h5>{{blog.title}} |
           <i ng-click="downVote(blog.votes)" class="material-icons">keyboard_arrow_down</i>
+          <i ng-click="upVote(blog.votes)" class="material-icons">keyboard_arrow_up</i>
           <span ng-class="{neg: blog.votes < 0, pos: blog.votes > 0}">
             {{blog.votes}}
           </span>
-          <i ng-click="upVote(blog.votes)" class="material-icons">keyboard_arrow_up</i>
         </h5>
         <h6 class="blue-text">"{{blog.author}}"  <time class="tooltipped grey-text" data-position="bottom" data-delay="0" data-tooltip="{{blog.date | amDateFormat:'dddd, MMMM Do YYYY, h:mm a'}}">{{blog.date | amCalendar}}</time></h6>
         <img ng-src="{{blog.image}}" />
@@ -88,7 +90,7 @@
         </div>
       </div>
     </main>
-    
+
     <!-- Footer -->
     <footer class="page-footer blue-grey darken-4">
       <div class="container">
