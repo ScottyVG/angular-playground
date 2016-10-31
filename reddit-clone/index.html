@@ -72,7 +72,7 @@
           <form ng-show="blog.addComment === true" ng-submit="newComment()" name="commentForm" class="col s8" novalidate>
             <input ng-model="blog.comment.author" ng-class="{invalid: commentForm.author.$invalid && this.blog.commentSubmitted}" type="text" name="author" placeholder="author" class="col s3" required>
             <input ng-model="blog.comment.body" ng-class="{invalid: commentForm.body.$invalid && this.blog.commentSubmitted}" type="text" name="body" placeholder="body" class="col s7" required>
-            <button type="submit" name="button" class="btn blue darken-4"><i class="material-icons">send</i></button>
+            <button type="submit" name="button" class="btn blue darken-4"><i class="material-icons">add</i></button>
           </form>
           <div class="row">
             <div class="col s2 offset-s4"><span ng-show="blog.addComment === true && this.blog.commentSubmitted && commentForm.author.$invalid" class="red-text">Required</span></div>

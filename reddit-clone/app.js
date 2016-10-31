@@ -18,10 +18,10 @@ app.controller(`ribbetController`, [`$scope`, function($scope) {
       author: `Mr. Kitty`,
       body: `first`
     }, {
-      author: `someone`,
-      body: `...`
+      author: `Scotty`,
+      body: `Doesn't Know`
     }],
-    date: `2016-10-20T18:14:17.966Z`,
+    date: `2016-10-27T18:14:17.966Z`,
     description: `Air plant hammock kombucha umami, hot chicken +1 normcore. Yuccie plaid cronut, offal four dollar toast readymade food truck four loko tousled. Twee scenester man braid biodiesel letterpress, put a bird on it dreamcatcher leggings fashion axe blue bottle disrupt pug iPhone hot chicken. Pok pok hella jean shorts locavore PBR&B. Heirloom chartreuse iPhone wolf, bicycle rights four dollar toast leggings. Neutra tilde waistcoat, salvia kale chips XOXO butcher. Quinoa hexagon iPhone, narwhal pug deep v coloring book chambray four loko fingerstache la croix meditation craft beer.
 
     Everyday carry pok pok biodiesel snackwave slow - carb,
@@ -31,12 +31,12 @@ app.controller(`ribbetController`, [`$scope`, function($scope) {
     chambray chartreuse austin.Waistcoat cronut drinking vinegar,
     keffiyeh 8 - bit biodiesel health goth 90 's tattooed sartorial. XOXO fam woke meditation bitters, cardigan affogato chambray literally try-hard coloring book tattooed banjo. Cray try-hard roof party, 8-bit cronut vegan authentic ugh before they sold out bitters dreamcatcher wayfarers.`,
     title: `Go Cubs Go`,
-    votes: 3,
+    votes: 10000,
   }, {
     author: `What the Funk`,
     comments: [{
       author: `Brightin`,
-      body: `just no`
+      body: `Wow this is so cool!`
     }],
     date: `2016-10-25T07:29:34.444Z`,
     description: `Fam bitters salvia vape hammock.Vice chicharrones small batch,
@@ -50,7 +50,7 @@ app.controller(`ribbetController`, [`$scope`, function($scope) {
   }, {
     author: `Billy Murray`,
     comments: [],
-    date: `2016-10-13T23:59:48.001Z`,
+    date: `2016-10-31T23:59:48.001Z`,
     description: `Small batch roof party quinoa enamel pin fanny pack.Next level roof party truffaut pork belly celiac listicle.Quinoa yr raw denim,
     ramps four dollar toast church - key prism hammock VHS schlitz tilde.Echo park vape meh iPhone hell of raclette vice,
     cliche vaporware waistcoat ennui asymmetrical fixie.Occupy squid mixtape,
@@ -105,7 +105,6 @@ app.controller(`ribbetController`, [`$scope`, function($scope) {
   };
 }]);
 
-// initialize Materialize components
 $(document).ready(() => {
   $(`.button-collapse`).sideNav();
   $(`.tooltipped`).tooltip({
