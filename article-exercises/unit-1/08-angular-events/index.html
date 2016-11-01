@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  <div ng-controller="MainController">
+  <button ng-click="pickRandomNumber()">Pick Random Number</button>
+  <h3>The number is: {{view.number}}</h3>
+  <input class="text" ng-click="reverseWord(s)"></input>
+  <h3>The reverse word is: {{view.word}}</h3>
+  <h3>The div was entered {{view.enterCount}} times</h3>
+<div class="divbox" ng-mouseenter="view.enterCount = view.enterCount + 1">
+</div>
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

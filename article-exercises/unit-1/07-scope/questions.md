@@ -8,12 +8,18 @@
 
 ## Explain how $scope is passed from a parent to child controller
 
+- normal protoypal scope inheritance -- ng-include, ng-switch, ng-controller, directive with scope: true
+- normal prototypal scope inheritance with a copy/assignment -- ng-repeat. Each iteration of ng-repeat creates a new child scope, and that new child scope always gets a new property.
+
 ## List five built in directives that create their own scope
+
+- ng-include
+- ng-controller
+- ng-switch
+- ng-repeat
+- ng-if
+- ng-view
 
 ### "Scope becomes tricky when you try to 2 way data bind to a primitive defined on the parent scope from inside the child scope" - what does this mean?
 
-## Complete the following
-
-### Create an example of some buggy angular code where you try to two way data bind a primitive defined on the parent scope from inside the child scope
-
-### Fix your example above, how did you fix it? What did you have to do to make it work?
+- because depending on the scope that we are using the scope that gets created may not be associated with the original scope and can cause errors in your code.

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" ng-app = "pingpong">
+<head>
+	<meta charset="UTF-8">
+	<title>Ping Pong Scoreboard</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.3/angular.js"></script>
+		<script src="pingpongapp.js"></script>
+		<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+	<h1>Ping Pong Scoreboard</h1>
+	<div ng-controller="playerController">
+		<table>
+			<tr>
+				<td>
+					<div ng-class="{'win': player1.score == 11}" class="board">
+						<h2>{{player1.name}}</h2>
+						<p ng-show="player1.score==11">Winner!</p>
+						Points: {{player1.score}}
+						<button ng-click="addPoint(player1)">Add Point</button>
+						<p ng-show="player1.serving == true">Serving</p>
+					</div>
+				</td>
+				<td>
+					<div ng-class="{'win': player2.score == 11}" class="board">
+						<h2>{{player2.name}}</h2>
+						<p ng-show="player2.score==11">Winner!</p>
+						Points: {{player2.score}}
+						<button ng-click="addPoint(player2)">Add Point</button>
+						<p ng-show="player2.serving == true">Serving</p>
+					</div>
+				</td>
+			</tr>
+		</table>
+		<button ng-click="reset()">New Game</button>
+		</div>
+
+
+	</div>
+</body>
+</html>

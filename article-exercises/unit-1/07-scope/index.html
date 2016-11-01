@@ -22,7 +22,7 @@
 </body>
 </html> -->
 
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en" ng-app="broken">
 <head>
   <meta charset="UTF-8">
@@ -33,6 +33,24 @@
     {{ message }}
     <div ng-if="number === 42">
       Secret Message: <input type="text" ng-model="message">
+    </div>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.js"></script>
+  <script src="app.js"></script>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en" ng-app="broken">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  <div ng-controller="MainController">
+    {{view.message}}
+    <div ng-if="view.number === 42">
+      Secret Message: <input type="text" ng-model="view.message">
     </div>
   </div>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.js"></script>
