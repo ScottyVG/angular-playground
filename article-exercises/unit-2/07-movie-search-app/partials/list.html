@@ -1,0 +1,16 @@
+<div ng-if="vm.loading" class="progress">
+    <div class="indeterminate"></div>
+</div>
+<table class="bordered">
+  <thead>
+    <tr><th>Title</th><th>Year</th><th>imdbID</th></tr>
+  </thead>
+  <tbody ng-repeat="movie in vm.movies">
+    <tr>
+      <td>{{movie.Title}}</td>
+      <td>{{movie.Year}}</td>
+      <td>{{movie.imdbID}}</td>
+      <td><button ng-click="show()">More</button></td>
+    </tr>
+  </tbody>
+</table>
